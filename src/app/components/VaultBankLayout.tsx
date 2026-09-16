@@ -19,11 +19,9 @@ import {
   Menu,
   X,
   ShieldCheck,
-  Smartphone,
-  CheckCircle2,
   Send,
   Lock,
-  ArrowRight
+  PhoneCall
 } from 'lucide-react';
 import { mockCustomer } from '@/lib/mockData';
 
@@ -69,52 +67,56 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#070b14] text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-slate-100 text-slate-900 flex flex-col font-sans selection:bg-red-600 selection:text-white">
       
-      {/* Top Security Banner */}
-      <div className="bg-slate-950 border-b border-slate-800/80 text-xs py-1.5 px-4 sm:px-8 text-slate-400 flex items-center justify-between">
-        <div className="flex items-center space-x-2 text-[11px]">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-          <span className="font-medium text-slate-300">VaultBank NetBanking 256-Bit SSL Encrypted Session</span>
-          <span className="text-slate-600 hidden md:inline">•</span>
-          <span className="hidden md:inline text-slate-400">Node: MUM-IN-PRI-01</span>
+      {/* Top Red Security & Helpline Bar (Union Bank / SBI Style) */}
+      <div className="bg-[#b91c1c] text-white text-xs py-1.5 px-4 sm:px-8 flex items-center justify-between shadow-sm">
+        <div className="flex items-center space-x-3 text-[11px] font-medium">
+          <span className="flex items-center gap-1 font-bold">
+            <ShieldCheck className="w-3.5 h-3.5" /> Official NetBanking Portal
+          </span>
+          <span className="opacity-60 hidden md:inline">|</span>
+          <span className="hidden md:inline">DICGC Insured up to ₹5 Lakhs</span>
+          <span className="opacity-60 hidden lg:inline">|</span>
+          <span className="hidden lg:inline">Toll Free: 1800-400-VAULT (82858)</span>
         </div>
-        <div className="flex items-center space-x-4 text-[11px]">
-          <span className="hidden sm:inline text-slate-400">Welcome, <strong>{mockCustomer.name}</strong></span>
-          <span className="bg-emerald-950/80 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-800/80 text-[10px] font-semibold flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            Secured Connection
+
+        <div className="flex items-center space-x-3 text-[11px]">
+          <span className="hidden sm:inline">User: <strong>{mockCustomer.name}</strong></span>
+          <span className="bg-white/20 px-2 py-0.5 rounded text-[10px] font-bold flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
+            256-Bit SSL Secured
           </span>
         </div>
       </div>
 
-      {/* Main Authenticated Top Header */}
-      <header className="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 shadow-xl">
+      {/* Main Navy Blue Header */}
+      <header className="bg-[#003366] text-white sticky top-0 z-40 shadow-lg border-b-2 border-red-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Top Row: Logo, Search, Utilities */}
+          {/* Top Row: Brand Logo, Search, Utilities */}
           <div className="h-16 flex items-center justify-between gap-4">
             
-            {/* Brand Logo & Mobile menu button */}
+            {/* Brand Logo */}
             <div className="flex items-center space-x-3">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition"
                 aria-label="Toggle navigation"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
 
               <Link href="/dashboard" className="flex items-center space-x-3 group">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-900/40 group-hover:scale-105 transition-transform">
-                  <Building2 className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-xl bg-red-600 border border-white/30 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                  <Building2 className="w-6 h-6" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg font-extrabold tracking-tight text-white flex items-center gap-1 leading-none">
-                    VAULT<span className="text-blue-500">BANK</span>
+                  <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1 leading-none">
+                    VAULT<span className="text-red-500 font-black">BANK</span>
                   </span>
-                  <span className="text-[9px] uppercase tracking-widest text-slate-400 font-semibold mt-0.5">
-                    Secure NetBanking
+                  <span className="text-[9px] uppercase tracking-widest text-slate-300 font-bold mt-0.5">
+                    Government Approved Digital Banking
                   </span>
                 </div>
               </Link>
@@ -123,11 +125,11 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
             {/* Quick Search */}
             <div className="hidden md:flex flex-1 max-w-sm mx-4">
               <div className="relative w-full">
-                <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
                   placeholder="Search accounts, transactions, beneficiary..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-full pl-9 pr-4 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition"
+                  className="w-full bg-white/10 border border-white/20 rounded-full pl-9 pr-4 py-1.5 text-xs text-white placeholder-slate-300 focus:outline-none focus:bg-white focus:text-slate-900 focus:placeholder-slate-500 transition"
                 />
               </div>
             </div>
@@ -138,7 +140,7 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
               {/* Quick Transfer Button */}
               <Link
                 href="/dashboard"
-                className="hidden sm:inline-flex items-center space-x-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-xl text-xs font-semibold shadow-md shadow-blue-900/30 transition"
+                className="hidden sm:inline-flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 text-white px-3.5 py-1.5 rounded-lg text-xs font-bold shadow transition"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Quick Pay</span>
@@ -151,29 +153,29 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
                     setShowNotifications(!showNotifications);
                     setShowProfileMenu(false);
                   }}
-                  className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 relative transition"
+                  className="p-2 rounded-full text-slate-200 hover:bg-white/10 relative transition"
                 >
                   <Bell className="w-5 h-5" />
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-blue-500 rounded-full animate-ping"></span>
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
+                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
                 </button>
 
                 {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-80 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl z-50 py-3 text-xs">
-                    <div className="px-4 pb-2 border-b border-slate-800 flex justify-between items-center">
-                      <span className="font-semibold text-white">Notifications</span>
-                      <span className="text-[10px] text-blue-400 cursor-pointer hover:underline">Mark read</span>
+                  <div className="absolute right-0 mt-2 w-80 bg-white border border-slate-200 text-slate-900 rounded-xl shadow-2xl z-50 py-3 text-xs">
+                    <div className="px-4 pb-2 border-b border-slate-100 flex justify-between items-center">
+                      <span className="font-bold text-[#003366]">Recent Notifications</span>
+                      <span className="text-[10px] text-blue-700 font-semibold cursor-pointer hover:underline">Clear</span>
                     </div>
-                    <div className="divide-y divide-slate-800 max-h-64 overflow-y-auto">
-                      <div className="p-3 hover:bg-slate-800/50 transition">
-                        <p className="font-semibold text-white">Salary Credit Received</p>
-                        <p className="text-slate-400 mt-0.5">₹3,25,000.00 credited to Checking •••• 4821</p>
-                        <span className="text-[10px] text-slate-500 mt-1 block">Today at 09:42 AM</span>
+                    <div className="divide-y divide-slate-100 max-h-64 overflow-y-auto">
+                      <div className="p-3 hover:bg-slate-50 transition">
+                        <p className="font-bold text-slate-900">Salary Credit Received</p>
+                        <p className="text-slate-600 mt-0.5">₹3,25,000.00 credited to Checking •••• 4821</p>
+                        <span className="text-[10px] text-slate-400 mt-1 block">Today at 09:42 AM</span>
                       </div>
-                      <div className="p-3 hover:bg-slate-800/50 transition">
-                        <p className="font-semibold text-white">Interest Accrued</p>
-                        <p className="text-slate-400 mt-0.5">₹39,820.00 added to Super Savings •••• 9104</p>
-                        <span className="text-[10px] text-slate-500 mt-1 block">Sep 08, 2026</span>
+                      <div className="p-3 hover:bg-slate-50 transition">
+                        <p className="font-bold text-slate-900">Interest Credit</p>
+                        <p className="text-slate-600 mt-0.5">₹39,820.00 added to Super Savings •••• 9104</p>
+                        <span className="text-[10px] text-slate-400 mt-1 block">Sep 08, 2026</span>
                       </div>
                     </div>
                   </div>
@@ -187,45 +189,45 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
                     setShowProfileMenu(!showProfileMenu);
                     setShowNotifications(false);
                   }}
-                  className="flex items-center space-x-2 p-1.5 rounded-xl hover:bg-slate-800 border border-slate-800 transition"
+                  className="flex items-center space-x-2 p-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-800 text-white font-bold flex items-center justify-center text-xs shadow-inner">
+                  <div className="w-8 h-8 rounded bg-red-600 text-white font-bold flex items-center justify-center text-xs shadow-sm">
                     AV
                   </div>
                   <div className="hidden sm:flex flex-col text-left">
-                    <span className="text-xs font-bold text-slate-200 leading-none">{mockCustomer.name}</span>
-                    <span className="text-[10px] text-slate-400 mt-0.5">ID: {mockCustomer.id}</span>
+                    <span className="text-xs font-bold text-white leading-none">{mockCustomer.name}</span>
+                    <span className="text-[10px] text-slate-200 mt-0.5">ID: {mockCustomer.id}</span>
                   </div>
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-200" />
                 </button>
 
                 {showProfileMenu && (
-                  <div className="absolute right-0 mt-2 w-64 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl z-50 py-2 text-xs">
-                    <div className="px-4 py-2 border-b border-slate-800">
-                      <p className="font-bold text-white">{mockCustomer.name}</p>
-                      <p className="text-slate-400 truncate">{mockCustomer.email}</p>
-                      <div className="mt-2 inline-flex items-center gap-1 text-[10px] bg-blue-950 text-blue-400 px-2 py-0.5 rounded border border-blue-800">
-                        <ShieldCheck className="w-3 h-3" /> Tier 1 Executive Customer
+                  <div className="absolute right-0 mt-2 w-64 bg-white border border-slate-200 text-slate-900 rounded-xl shadow-2xl z-50 py-2 text-xs">
+                    <div className="px-4 py-2 border-b border-slate-100">
+                      <p className="font-bold text-[#003366]">{mockCustomer.name}</p>
+                      <p className="text-slate-500 truncate">{mockCustomer.email}</p>
+                      <div className="mt-2 inline-flex items-center gap-1 text-[10px] bg-red-50 text-red-700 px-2 py-0.5 rounded border border-red-200 font-bold">
+                        <ShieldCheck className="w-3 h-3" /> Tier 1 Verified Account
                       </div>
                     </div>
                     <Link
                       href="/profile"
                       onClick={() => setShowProfileMenu(false)}
-                      className="flex items-center px-4 py-2 text-slate-300 hover:bg-slate-800 hover:text-white"
+                      className="flex items-center px-4 py-2 text-slate-700 hover:bg-slate-100 hover:text-blue-900 font-medium"
                     >
-                      <User className="w-4 h-4 mr-2 text-slate-400" /> Profile & Security Settings
+                      <User className="w-4 h-4 mr-2 text-slate-500" /> Profile & Security Settings
                     </Link>
                     <Link
                       href="/support"
                       onClick={() => setShowProfileMenu(false)}
-                      className="flex items-center px-4 py-2 text-slate-300 hover:bg-slate-800 hover:text-white"
+                      className="flex items-center px-4 py-2 text-slate-700 hover:bg-slate-100 hover:text-blue-900 font-medium"
                     >
-                      <HelpCircle className="w-4 h-4 mr-2 text-slate-400" /> Help Desk
+                      <HelpCircle className="w-4 h-4 mr-2 text-slate-500" /> Customer Support
                     </Link>
-                    <div className="border-t border-slate-800 mt-1 pt-1">
+                    <div className="border-t border-slate-100 mt-1 pt-1">
                       <button
                         onClick={handleLogout}
-                        className="w-full flex items-center px-4 py-2 text-rose-400 hover:bg-rose-950/30 transition text-left"
+                        className="w-full flex items-center px-4 py-2 text-red-600 hover:bg-red-50 font-bold transition text-left"
                       >
                         <LogOut className="w-4 h-4 mr-2" /> Sign Out
                       </button>
@@ -239,7 +241,7 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
           </div>
 
           {/* Bottom Row: TOP Horizontal Navigation Menu */}
-          <nav className="hidden lg:flex items-center space-x-1 border-t border-slate-800/80 py-1.5 overflow-x-auto">
+          <nav className="hidden lg:flex items-center space-x-1 border-t border-white/10 py-1.5 overflow-x-auto">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
@@ -247,13 +249,13 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition ${
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-md shadow-blue-900/30 font-bold'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                      ? 'bg-red-600 text-white shadow font-extrabold'
+                      : 'text-slate-100 hover:text-white hover:bg-white/10'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                  <Icon className="w-4 h-4" />
                   <span>{item.name}</span>
                 </Link>
               );
@@ -266,16 +268,16 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
-          <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}></div>
-          <div className="relative bg-slate-900 w-72 max-w-xs p-5 flex flex-col h-full z-10 border-r border-slate-800">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}></div>
+          <div className="relative bg-[#003366] text-white w-72 max-w-xs p-5 flex flex-col h-full z-10 border-r border-slate-700">
+            <div className="flex items-center justify-between pb-4 border-b border-white/20">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                <div className="w-8 h-8 rounded bg-red-600 flex items-center justify-center text-white">
                   <Building2 className="w-4 h-4" />
                 </div>
-                <span className="font-extrabold text-white text-base">VAULTBANK</span>
+                <span className="font-black text-white text-base">VAULTBANK</span>
               </div>
-              <button onClick={() => setMobileMenuOpen(false)} className="text-slate-400 hover:text-white">
+              <button onClick={() => setMobileMenuOpen(false)} className="text-white hover:text-red-400">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -290,8 +292,8 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition ${
-                        isActive ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                      className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-bold transition ${
+                        isActive ? 'bg-red-600 text-white' : 'text-slate-100 hover:bg-white/10'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -302,10 +304,10 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
               </nav>
             </div>
 
-            <div className="border-t border-slate-800 pt-4">
+            <div className="border-t border-white/20 pt-4">
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center justify-center space-x-2 py-2.5 rounded-xl bg-rose-950/40 text-rose-300 border border-rose-900/50 text-xs font-semibold"
+                className="w-full flex items-center justify-center space-x-2 py-2.5 rounded-lg bg-red-600 text-white text-xs font-bold shadow"
               >
                 <LogOut className="w-4 h-4" />
                 <span>Sign Out</span>
@@ -320,43 +322,43 @@ export default function VaultBankLayout({ children }: VaultBankLayoutProps) {
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-800 bg-slate-950 text-slate-400 text-xs py-10 px-4 sm:px-8 mt-auto">
+      {/* Footer (Union Bank / SBI Official Style) */}
+      <footer className="border-t-4 border-[#003366] bg-slate-900 text-slate-300 text-xs py-10 px-4 sm:px-8 mt-auto">
         <div className="max-w-7xl mx-auto space-y-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-6 border-b border-slate-800/80">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-6 border-b border-slate-800">
             <div className="flex items-center space-x-3">
-              <div className="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center font-black text-sm shadow">
                 VB
               </div>
-              <span className="text-white font-bold text-sm">VaultBank Financial Services India Ltd.</span>
+              <span className="text-white font-bold text-sm">VaultBank (A Premier Public Sector Enterprise)</span>
             </div>
-            <div className="flex flex-wrap gap-4 text-xs text-slate-400">
+            <div className="flex flex-wrap gap-4 text-xs text-slate-300">
               <span className="hover:text-white cursor-pointer">Privacy Notice</span>
               <span>•</span>
               <span className="hover:text-white cursor-pointer">Security Policy</span>
               <span>•</span>
               <span className="hover:text-white cursor-pointer">Terms of NetBanking</span>
               <span>•</span>
-              <span className="hover:text-white cursor-pointer">DICGC Deposit Insurance Certificate</span>
+              <span className="hover:text-white cursor-pointer">DICGC Deposit Insurance</span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-[11px] text-slate-400 leading-relaxed">
             <div>
-              <h5 className="font-bold text-slate-200 mb-1">Regulatory Notice</h5>
-              <p>VaultBank is a licensed banking institution regulated by the Reserve Bank of India (RBI Registration No. B-90142). All deposits up to ₹5,00,000 are insured by DICGC.</p>
+              <h5 className="font-bold text-white mb-1">RBI Regulatory Advisory</h5>
+              <p>VaultBank is a licensed banking entity regulated by the Reserve Bank of India. Deposits up to ₹5,00,000 per depositor are insured by DICGC.</p>
             </div>
             <div>
-              <h5 className="font-bold text-slate-200 mb-1">Security Standard</h5>
-              <p>Certified ISO 27001:2022 Information Security Management System. Transactions protected by hardware 2FA and TLS 1.3 protocol.</p>
+              <h5 className="font-bold text-white mb-1">Cyber Security Advisory</h5>
+              <p>VaultBank never asks for OTP, CVV, or passwords over call/SMS. Never share credentials with unverified sources.</p>
             </div>
             <div>
-              <h5 className="font-bold text-slate-200 mb-1">24/7 Helpline</h5>
-              <p>National Priority Desk: 1800-400-VAULT (82858) • Emergency Card Lock SMS: BLOCK 8842 to 56161.</p>
+              <h5 className="font-bold text-white mb-1">Customer Helpline</h5>
+              <p>National Toll Free: 1800-400-VAULT (82858) • Emergency Card Blocking: SMS 'BLOCK 8842' to 56161.</p>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-slate-900 text-center text-[10px] text-slate-400">
+          <div className="pt-4 border-t border-slate-800 text-center text-[10px] text-slate-400">
             &copy; 2026 VaultBank Limited. All Rights Reserved. Banking built around your world.
           </div>
         </div>

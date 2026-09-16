@@ -13,7 +13,7 @@ import {
   KeyRound,
   Globe2,
   Smartphone,
-  AlertCircle
+  AlertTriangle
 } from 'lucide-react';
 
 export default function LoginPage() {
@@ -29,120 +29,121 @@ export default function LoginPage() {
     setIsLoading(true);
     setAuthError('');
 
-    // Simulated frontend fetch targetting future POST /api/auth/login route
     try {
-      // Small realistic login delay
       await new Promise((resolve) => setTimeout(resolve, 800));
 
       if (!customerId.trim() || !password.trim()) {
-        setAuthError('Please provide a valid Customer ID and NetBanking Password.');
+        setAuthError('Please enter a valid Customer ID and Password.');
         setIsLoading(false);
         return;
       }
 
-      // Successful fake authentication redirect to dashboard
       router.push('/dashboard');
     } catch {
-      setAuthError('Authentication service momentarily unavailable. Please retry.');
+      setAuthError('Authentication service temporarily unavailable. Please retry.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#070b14] flex flex-col justify-between selection:bg-blue-600 selection:text-white relative overflow-hidden">
+    <div className="min-h-screen bg-slate-100 flex flex-col justify-between font-sans text-slate-900 selection:bg-red-600 selection:text-white">
       
-      {/* Subtle Background Glow Elements */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-indigo-600/5 rounded-full blur-3xl pointer-events-none"></div>
-
-      {/* Top Header */}
-      <header className="py-6 px-6 sm:px-12 max-w-7xl mx-auto w-full flex items-center justify-between border-b border-slate-800/40 relative z-10">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-900/40">
-            <Building2 className="w-6 h-6" />
-          </div>
-          <div>
-            <span className="text-xl font-bold tracking-tight text-white block leading-tight">
-              VAULT<span className="text-blue-500 font-extrabold">BANK</span>
-            </span>
-            <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
-              Secure Banking
-            </span>
-          </div>
+      {/* Top Red Security Bar */}
+      <div className="bg-[#b91c1c] text-white text-xs py-1.5 px-4 sm:px-8 flex items-center justify-between">
+        <div className="flex items-center space-x-2 font-medium">
+          <ShieldCheck className="w-4 h-4" />
+          <span>Official VaultBank Internet Banking Portal</span>
         </div>
+        <div className="hidden sm:flex items-center space-x-4 text-[11px]">
+          <span>Toll-Free Helpline: 1800-400-VAULT</span>
+          <span>•</span>
+          <span>DICGC Deposit Protection Guarantee</span>
+        </div>
+      </div>
 
-        <div className="flex items-center space-x-4">
-          <span className="hidden sm:inline-flex items-center text-xs text-emerald-400 font-medium bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            256-Bit SSL Encrypted
-          </span>
-          <a
-            href="#support"
-            className="text-xs font-medium text-slate-300 hover:text-white transition flex items-center gap-1"
-          >
-            Need Help?
-          </a>
+      {/* Main Navy Header */}
+      <header className="bg-[#003366] text-white py-4 px-6 sm:px-12 border-b-4 border-red-600 shadow-md">
+        <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-xl bg-red-600 border border-white/30 flex items-center justify-center text-white shadow">
+              <Building2 className="w-6 h-6" />
+            </div>
+            <div>
+              <span className="text-xl font-extrabold tracking-tight text-white block leading-none">
+                VAULT<span className="text-red-500 font-black">BANK</span>
+              </span>
+              <span className="text-[10px] uppercase tracking-widest text-slate-200 font-bold mt-0.5 block">
+                Public Sector Financial Enterprise
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <span className="bg-white/10 text-white border border-white/20 px-3 py-1 rounded-full text-xs font-semibold hidden sm:inline">
+              256-Bit SSL Encrypted
+            </span>
+          </div>
         </div>
       </header>
 
       {/* Login Main Section */}
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-12 flex flex-col lg:flex-row items-center justify-center gap-12 relative z-10">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-12 flex flex-col lg:flex-row items-center justify-center gap-12">
         
         {/* Left Hero Content */}
         <div className="flex-1 max-w-lg text-left space-y-6">
-          <div className="inline-flex items-center space-x-2 bg-blue-950/80 border border-blue-800/60 text-blue-300 px-3 py-1 rounded-full text-xs font-medium">
-            <Globe2 className="w-3.5 h-3.5 text-blue-400" />
-            <span>Vault Premier Digital Banking Portal</span>
+          <div className="inline-flex items-center space-x-2 bg-blue-100 border border-blue-300 text-[#003366] px-3.5 py-1 rounded-full text-xs font-bold">
+            <Globe2 className="w-4 h-4 text-red-600" />
+            <span>VaultBank Digital NetBanking Portal</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Banking built around <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">your world.</span>
+          <h1 className="text-4xl sm:text-5xl font-black text-[#003366] tracking-tight leading-tight">
+            Banking built around <span className="text-red-600">your world.</span>
           </h1>
 
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Experience next-generation financial control. Access multi-currency accounts, instant domestic transfers, high-yield deposit management, and real-time security alerts.
+          <p className="text-slate-700 text-sm leading-relaxed font-medium">
+            Welcome to VaultBank Retail & Corporate Internet Banking. Securely access your checking accounts, high-yield deposits, instant transfers, and card controls.
           </p>
 
           <div className="grid grid-cols-2 gap-4 pt-2">
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3.5 flex items-start space-x-3">
-              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex items-start space-x-3">
+              <ShieldCheck className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-xs font-bold text-white">Biometric Vault Auth</h4>
-                <p className="text-[11px] text-slate-400">Zero-trust session verification</p>
+                <h4 className="text-xs font-bold text-[#003366]">Biometric Authentication</h4>
+                <p className="text-[11px] text-slate-500 font-medium">Hardware 2FA protection</p>
               </div>
             </div>
 
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3.5 flex items-start space-x-3">
-              <Smartphone className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex items-start space-x-3">
+              <Smartphone className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-xs font-bold text-white">Instant UPI & IMPS</h4>
-                <p className="text-[11px] text-slate-400">24/7 high-capacity routing</p>
+                <h4 className="text-xs font-bold text-[#003366]">Instant UPI & IMPS</h4>
+                <p className="text-[11px] text-slate-500 font-medium">24/7 Real-Time Settlement</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-amber-950/30 border border-amber-800/40 rounded-xl p-4 flex items-start space-x-3 text-xs text-amber-200">
-            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-start space-x-3 text-xs text-red-900">
+            <AlertTriangle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong>Security Notice:</strong> VaultBank will never ask for your 6-digit MPIN, OTP, or passwords via phone call, SMS, or third-party links. Always verify the domain <code className="text-white bg-slate-900 px-1 py-0.5 rounded">vaultbank-client.in</code>.
+              <strong>Mandatory Advisory:</strong> VaultBank officials never request your 6-digit MPIN, OTP, or NetBanking password over phone calls or SMS.
             </p>
           </div>
         </div>
 
-        {/* Right Login Card */}
-        <div className="w-full max-w-md bg-slate-900/80 border border-slate-800 backdrop-blur-xl rounded-2xl p-8 shadow-2xl shadow-blue-950/50">
+        {/* Right White Login Card */}
+        <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-8 shadow-xl">
           
-          <div className="mb-6">
-            <h2 className="text-xl font-bold text-white">Welcome Back</h2>
-            <p className="text-xs text-slate-400 mt-1">
-              Sign in to your VaultBank NetBanking account
+          <div className="mb-6 pb-4 border-b border-slate-100">
+            <h2 className="text-xl font-extrabold text-[#003366]">NetBanking Login</h2>
+            <p className="text-xs text-slate-500 mt-1 font-medium">
+              Enter your credentials to access your VaultBank account
             </p>
           </div>
 
           {authError && (
-            <div className="mb-4 bg-rose-950/60 border border-rose-800 text-rose-300 text-xs rounded-xl p-3 flex items-start space-x-2">
-              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl p-3 flex items-start space-x-2 font-medium">
+              <AlertTriangle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
               <span>{authError}</span>
             </div>
           )}
@@ -150,18 +151,18 @@ export default function LoginPage() {
           <form onSubmit={handleLogin} className="space-y-5">
             {/* Customer ID */}
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
                 Customer ID / Username
               </label>
               <div className="relative">
-                <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
                   required
                   value={customerId}
                   onChange={(e) => setCustomerId(e.target.value)}
                   placeholder="e.g. VB-8940192"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 font-semibold placeholder-slate-400 focus:outline-none focus:border-[#003366] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -169,40 +170,40 @@ export default function LoginPage() {
             {/* Password */}
             <div>
               <div className="flex justify-between items-center mb-1.5">
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
                   NetBanking Password
                 </label>
-                <a href="#forgot" className="text-xs text-blue-400 hover:underline">
+                <a href="#forgot" className="text-xs text-blue-700 font-bold hover:underline">
                   Forgot Password?
                 </a>
               </div>
               <div className="relative">
-                <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                <Lock className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 font-semibold placeholder-slate-400 focus:outline-none focus:border-[#003366] focus:bg-white transition"
                 />
               </div>
             </div>
 
             {/* Remember Device & Security Option */}
             <div className="flex items-center justify-between text-xs">
-              <label className="flex items-center space-x-2 text-slate-400 cursor-pointer">
+              <label className="flex items-center space-x-2 text-slate-600 font-medium cursor-pointer">
                 <input
                   type="checkbox"
                   checked={rememberDevice}
                   onChange={(e) => setRememberDevice(e.target.checked)}
-                  className="w-4 h-4 rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-slate-900"
+                  className="w-4 h-4 rounded bg-slate-100 border-slate-300 text-red-600 focus:ring-red-500"
                 />
-                <span>Remember this browser</span>
+                <span>Remember this device</span>
               </label>
 
-              <span className="text-slate-500 flex items-center gap-1 text-[11px]">
-                <KeyRound className="w-3 h-3 text-emerald-400" /> Virtual Keyboard
+              <span className="text-slate-500 flex items-center gap-1 text-[11px] font-semibold">
+                <KeyRound className="w-3.5 h-3.5 text-red-600" /> Virtual Keyboard
               </span>
             </div>
 
@@ -210,16 +211,16 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-3 rounded-xl shadow-lg shadow-blue-900/40 text-sm flex items-center justify-center space-x-2 transition disabled:opacity-50"
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3 rounded-xl shadow text-sm flex items-center justify-center space-x-2 transition disabled:opacity-50"
             >
               {isLoading ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  <span>Authenticating Session...</span>
+                  <span>Authenticating...</span>
                 </>
               ) : (
                 <>
-                  <span>Sign In to VaultBank</span>
+                  <span>Sign In to NetBanking</span>
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
@@ -227,9 +228,9 @@ export default function LoginPage() {
           </form>
 
           {/* Registration Footer */}
-          <div className="mt-6 pt-5 border-t border-slate-800 text-center text-xs text-slate-400">
+          <div className="mt-6 pt-5 border-t border-slate-100 text-center text-xs text-slate-600 font-medium">
             <span>New to VaultBank? </span>
-            <a href="#register" className="text-blue-400 font-semibold hover:underline">
+            <a href="#register" className="text-[#003366] font-bold hover:underline">
               Register for NetBanking &rarr;
             </a>
           </div>
@@ -239,8 +240,8 @@ export default function LoginPage() {
       </main>
 
       {/* Footer */}
-      <footer className="py-4 text-center text-xs text-slate-600 border-t border-slate-800/40 relative z-10">
-        <p>&copy; 2026 VaultBank Financial Services Ltd. Member DICGC. All Rights Reserved.</p>
+      <footer className="bg-slate-900 text-slate-300 py-4 text-center text-xs border-t border-slate-800">
+        <p>&copy; 2026 VaultBank Limited. Member DICGC. All Rights Reserved.</p>
       </footer>
 
     </div>
