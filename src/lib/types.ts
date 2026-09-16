@@ -56,14 +56,14 @@ export interface AttackerProfile {
 }
 
 export interface HoneypotStats {
-  active_sessions?: number;
+  active_sessions: number;
+  requests_today: number;
+  attacks_intercepted: number;
+  total_time_wasted_seconds: number;
   sessions_active?: number;
   total_sessions?: number;
-  requests_today?: number;
   total_requests?: number;
-  attacks_intercepted?: number;
   total_attacks?: number;
-  total_time_wasted_seconds?: number;
   time_wasted_seconds?: number;
 }
 

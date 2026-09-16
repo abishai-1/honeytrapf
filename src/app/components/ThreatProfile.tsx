@@ -9,7 +9,7 @@ const levelClass: Record<ThreatLevel, string> = {
 
 function maskIp(ip: string) {
   const parts = ip.split(".");
-  return parts.length === 4 ? `${parts[0]}.${parts[1]}.x.${parts[3]}` : ip;
+  return parts.length === 4 ? `${parts[0]}.${parts[1]}.xxx.xxx` : ip;
 }
 
 function elapsed(seconds: number) {
@@ -17,17 +17,31 @@ function elapsed(seconds: number) {
   return minutes ? `${minutes}m ${seconds % 60}s` : `${seconds}s`;
 }
 
-export function ThreatProfile({ profile, active }: { profile: AttackerProfile; active?: boolean }) {
+const stageNames = ["OBSERVE", "HOOK", "VAULT", "MAZE"];
+
+export function ThreatProfile({
+  profile,
+  active,
+  onSelect
+}: {
+  profile: AttackerProfile;
+  active?: boolean;
+  onSelect: () => void;
+}) {
   const scoreWidth = Math.min(100, Math.round(profile.total_score));
 
   return (
-    <article className={`border bg-[#0a1020] p-3 transition ${active ? "border-soc-watching/70" : "border-soc-border"}`}>
+    <button
+      type="button"
+      onClick={onSelect}
+      className={`w-full rounded border bg-[#0a1020] p-3 text-left transition hover:border-soc-dim hover:bg-[#0d162b] focus:outline-none focus:ring-2 focus:ring-soc-watching/35 ${active ? "border-soc-watching/70 shadow-glow" : "border-soc-border"}`}
+    >
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="font-mono text-sm font-semibold text-white">{maskIp(profile.ip)}</p>
-          <p className="mt-1 text-xs text-soc-dim">{profile.target_interest ?? "unknown"} target</p>
+          <p className="mt-1 font-mono text-[11px] uppercase text-soc-dim">SESSION #{profile.session_id.slice(-5).toUpperCase()}</p>
         </div>
-        <span className={`border px-2 py-1 text-[10px] font-bold ${levelClass[profile.threat_level]}`}>{profile.threat_level}</span>
+        <span className={`rounded border px-2 py-1 text-[10px] font-bold ${levelClass[profile.threat_level]}`}>{profile.threat_level}</span>
       </div>
 
       <div className="mt-4 flex items-center gap-2">
@@ -48,6 +62,9 @@ export function ThreatProfile({ profile, active }: { profile: AttackerProfile; a
         <div className="h-2 bg-soc-border">
           <div className="h-full bg-soc-hostile" style={{ width: `${scoreWidth}%` }} />
         </div>
+        <p className="mt-2 text-xs uppercase tracking-[0.12em] text-soc-dim">
+          Stage {String(profile.stage).padStart(2, "0")} - {stageNames[profile.stage] ?? "UNKNOWN"}
+        </p>
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -62,6 +79,7 @@ export function ThreatProfile({ profile, active }: { profile: AttackerProfile; a
         <span className="text-soc-dim">Requests: <b className="text-soc-text">{profile.request_count}</b></span>
         <span className="text-soc-dim">Wasted: <b className="text-soc-text">{elapsed(profile.time_wasted_seconds)}</b></span>
       </div>
-    </article>
+      <p className="mt-2 text-xs text-soc-dim">Target: <b className="text-soc-text">{profile.target_interest ?? "UNKNOWN"}</b></p>
+    </button>
   );
 }
