@@ -22,7 +22,6 @@ export default function ReportsPage() {
     e.preventDefault();
     setIsExporting(true);
 
-    // Simulated fetch targetting GET /api/reports route
     setTimeout(() => {
       setIsExporting(false);
       alert(`Report generated! Simulating download for GET /api/reports?type=${reportType}&format=${exportFormat}`);
@@ -32,28 +31,30 @@ export default function ReportsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Header */}
-      <div className="border-b border-slate-800 pb-4">
-        <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-          <BarChart3 className="w-6 h-6 text-emerald-400" /> Financial Reports & Analytics
-        </h1>
-        <p className="text-xs text-slate-400 mt-1">
-          Generate comprehensive ledger reports, tax computation summaries, and transaction exports
-        </p>
+      {/* Header - Fixed to Dark Navy Text (#003366) */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-black text-[#003366] flex items-center gap-2">
+            <BarChart3 className="w-6 h-6 text-red-600" /> Tax & Financial Summary Analytics
+          </h1>
+          <p className="text-xs text-slate-600 mt-1 font-medium">
+            Generate itemized tax computation reports, interest earned certificates, and cash flow summaries
+          </p>
+        </div>
       </div>
 
       {/* Main Report Generation Controls */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
         <form onSubmit={handleTriggerReport} className="space-y-6">
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
             
             <div>
-              <label className="block text-slate-300 font-semibold mb-1.5">Report Type</label>
+              <label className="block text-slate-700 font-bold mb-1.5">Report Category</label>
               <select
                 value={reportType}
                 onChange={(e) => setReportType(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500"
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-900 font-semibold focus:outline-none focus:border-[#003366]"
               >
                 <option value="summary">Monthly Cash Flow Summary</option>
                 <option value="detailed">Itemized Transaction Audit Log</option>
@@ -63,8 +64,8 @@ export default function ReportsPage() {
             </div>
 
             <div>
-              <label className="block text-slate-300 font-semibold mb-1.5">Date Range</label>
-              <select className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500">
+              <label className="block text-slate-700 font-bold mb-1.5">Financial Assessment Period</label>
+              <select className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-900 font-semibold focus:outline-none focus:border-[#003366]">
                 <option>Current Financial Year (FY 2025-26)</option>
                 <option>Previous Financial Year (FY 2024-25)</option>
                 <option>Last 90 Days</option>
@@ -73,30 +74,30 @@ export default function ReportsPage() {
             </div>
 
             <div>
-              <label className="block text-slate-300 font-semibold mb-1.5">Export Data Format</label>
+              <label className="block text-slate-700 font-bold mb-1.5">Export File Format</label>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={() => setExportFormat('csv')}
-                  className={`py-2 px-3 rounded-xl border flex items-center justify-center space-x-1.5 font-semibold transition ${
+                  className={`py-2 px-3 rounded-xl border flex items-center justify-center space-x-1.5 font-bold transition ${
                     exportFormat === 'csv'
-                      ? 'bg-blue-600 text-white border-blue-500'
-                      : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white'
+                      ? 'bg-[#003366] text-white border-[#003366] shadow'
+                      : 'bg-slate-50 text-slate-700 border-slate-300 hover:bg-slate-100'
                   }`}
                 >
-                  <FileSpreadsheet className="w-4 h-4" />
+                  <FileSpreadsheet className="w-4 h-4 text-red-400" />
                   <span>CSV File</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setExportFormat('json')}
-                  className={`py-2 px-3 rounded-xl border flex items-center justify-center space-x-1.5 font-semibold transition ${
+                  className={`py-2 px-3 rounded-xl border flex items-center justify-center space-x-1.5 font-bold transition ${
                     exportFormat === 'json'
-                      ? 'bg-blue-600 text-white border-blue-500'
-                      : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white'
+                      ? 'bg-[#003366] text-white border-[#003366] shadow'
+                      : 'bg-slate-50 text-slate-700 border-slate-300 hover:bg-slate-100'
                   }`}
                 >
-                  <FileCode className="w-4 h-4" />
+                  <FileCode className="w-4 h-4 text-red-400" />
                   <span>JSON Payload</span>
                 </button>
               </div>
@@ -104,11 +105,11 @@ export default function ReportsPage() {
 
           </div>
 
-          <div className="pt-4 border-t border-slate-800 flex justify-end">
+          <div className="pt-4 border-t border-slate-100 flex justify-end">
             <button
               type="submit"
               disabled={isExporting}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 px-6 rounded-xl text-xs shadow-lg shadow-emerald-900/30 flex items-center space-x-2 transition disabled:opacity-50"
+              className="bg-red-600 hover:bg-red-700 text-white font-extrabold py-2.5 px-6 rounded-xl text-xs shadow flex items-center space-x-2 transition disabled:opacity-50"
             >
               {isExporting ? (
                 <>
@@ -129,22 +130,22 @@ export default function ReportsPage() {
 
       {/* Summary Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-1">
-          <span className="text-slate-400 font-medium">Total Inflows (This Quarter)</span>
-          <p className="text-xl font-bold text-emerald-400">{formatINR(364820.00)}</p>
-          <p className="text-[10px] text-slate-500">Includes salary & interest payouts</p>
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 space-y-1 shadow-sm">
+          <span className="text-slate-500 font-bold">Quarterly Financial Inflows</span>
+          <p className="text-xl font-black text-emerald-600">{formatINR(364820.00)}</p>
+          <p className="text-[10px] text-slate-500 font-medium">Salary deposits & interest payout</p>
         </div>
 
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-1">
-          <span className="text-slate-400 font-medium">Total Outflows (This Quarter)</span>
-          <p className="text-xl font-bold text-slate-200">{formatINR(463469.00)}</p>
-          <p className="text-[10px] text-slate-500">Includes bill payments & card purchases</p>
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 space-y-1 shadow-sm">
+          <span className="text-slate-500 font-bold">Quarterly Financial Outflows</span>
+          <p className="text-xl font-black text-[#003366]">{formatINR(463469.00)}</p>
+          <p className="text-[10px] text-slate-500 font-medium">Card debits, bills, investments</p>
         </div>
 
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-1">
-          <span className="text-slate-400 font-medium">Tax Deducted at Source (TDS)</span>
-          <p className="text-xl font-bold text-amber-400">{formatINR(3982.00)}</p>
-          <p className="text-[10px] text-slate-500">Deposited under Section 194A</p>
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 space-y-1 shadow-sm">
+          <span className="text-slate-500 font-bold">Tax Deducted at Source (TDS)</span>
+          <p className="text-xl font-black text-red-600">{formatINR(3982.00)}</p>
+          <p className="text-[10px] text-slate-500 font-medium">Deposited under Section 194A</p>
         </div>
       </div>
 

@@ -12,8 +12,8 @@ import {
 
 export const mockCustomer: Customer = {
   id: 'VB-8940192',
-  name: 'Alexander Vance',
-  email: 'a.vance@vaultbank-client.in',
+  name: 'Bavana Sruthi',
+  email: 'bavana.sruthi@vaultbank-client.in',
   phone: '+91 98765 43210',
   address: 'Suite 402, Financial Centre Tower, BKC, Mumbai, MH 400051',
   kycStatus: 'Verified',
@@ -212,7 +212,7 @@ export const mockCards: Card[] = [
   {
     id: 'card-01',
     cardNumber: '•••• •••• •••• 8842',
-    cardHolder: 'ALEXANDER VANCE',
+    cardHolder: 'BAVANA SRUTHI',
     expiry: '11/29',
     cvv: '•••',
     type: 'Visa Infinite',
@@ -226,7 +226,7 @@ export const mockCards: Card[] = [
   {
     id: 'card-02',
     cardNumber: '•••• •••• •••• 3019',
-    cardHolder: 'ALEXANDER VANCE',
+    cardHolder: 'BAVANA SRUTHI',
     expiry: '04/28',
     cvv: '•••',
     type: 'RuPay Select',

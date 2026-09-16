@@ -25,28 +25,28 @@ export default function StatementsPage() {
   return (
     <div className="space-y-6">
       
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      {/* Header - Fixed to Dark Navy Text (#003366) */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-            <FileText className="w-6 h-6 text-indigo-400" /> Account Statements & Tax Advisories
+          <h1 className="text-2xl font-black text-[#003366] flex items-center gap-2">
+            <FileText className="w-6 h-6 text-red-600" /> Account Statements & Certified Ledger PDF Exports
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Download certified monthly PDF statements and annual financial summaries
+          <p className="text-xs text-slate-600 mt-1 font-medium">
+            Download certified monthly PDF statements, annual financial summaries, and interest advice
           </p>
         </div>
       </div>
 
       {/* Statements Table */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl shadow-xl overflow-hidden">
-        <div className="p-4 bg-slate-950 border-b border-slate-800 flex justify-between items-center text-xs">
-          <span className="font-bold text-white uppercase tracking-wider">Official Monthly Ledger Exports</span>
-          <span className="text-slate-400">PDF & CSV Format</span>
+      <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+        <div className="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-xs">
+          <span className="font-extrabold text-[#003366] uppercase tracking-wider">Official Monthly Ledger Exports</span>
+          <span className="text-slate-500 font-semibold">PDF & CSV Format</span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950/60 text-slate-400 uppercase text-[10px] font-bold tracking-wider border-b border-slate-800">
+            <thead className="bg-[#003366] text-white uppercase text-[10px] font-bold tracking-wider">
               <tr>
                 <th className="py-3.5 px-4">Statement Period</th>
                 <th className="py-3.5 px-4">Account</th>
@@ -56,19 +56,19 @@ export default function StatementsPage() {
                 <th className="py-3.5 px-4 text-right">Download</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+            <tbody className="divide-y divide-slate-100 text-slate-800 font-medium">
               {mockStatements.map((stm) => (
-                <tr key={stm.id} className="hover:bg-slate-800/40 transition">
-                  <td className="py-4 px-4 font-bold text-white flex items-center gap-2">
-                    <FileCheck className="w-4 h-4 text-blue-400" />
+                <tr key={stm.id} className="hover:bg-slate-50 transition">
+                  <td className="py-4 px-4 font-extrabold text-[#003366] flex items-center gap-2">
+                    <FileCheck className="w-4 h-4 text-red-600" />
                     <span>{stm.period}</span>
                   </td>
                   <td className="py-4 px-4">
-                    <div className="font-semibold text-slate-200">{stm.accountName}</div>
-                    <div className="text-[10px] text-slate-500">{stm.accountNumber}</div>
+                    <div className="font-bold text-slate-900">{stm.accountName}</div>
+                    <div className="text-[10px] text-slate-500 font-mono">{stm.accountNumber}</div>
                   </td>
-                  <td className="py-4 px-4 text-slate-400">{stm.statementDate}</td>
-                  <td className="py-4 px-4 text-right font-mono font-bold text-slate-100">
+                  <td className="py-4 px-4 text-slate-600 font-semibold">{stm.statementDate}</td>
+                  <td className="py-4 px-4 text-right font-mono font-bold text-slate-900">
                     {formatINR(stm.closingBalance)}
                   </td>
                   <td className="py-4 px-4 text-slate-500 font-mono">{stm.fileSize}</td>
@@ -76,7 +76,7 @@ export default function StatementsPage() {
                     <button
                       onClick={() => handleDownloadMock(stm.id, `${stm.id}_statement.pdf`)}
                       disabled={downloadingId === stm.id}
-                      className="bg-blue-600/90 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow flex items-center space-x-1.5 transition ml-auto disabled:opacity-50"
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow flex items-center space-x-1.5 transition ml-auto disabled:opacity-50"
                     >
                       {downloadingId === stm.id ? (
                         <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
