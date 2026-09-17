@@ -82,33 +82,33 @@ export default function BankingDashboard() {
       </div>
 
       {/* Main Welcome Hero */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-850 to-indigo-950 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-        <div className="absolute right-0 top-0 w-96 h-full bg-gradient-to-l from-blue-600/10 to-transparent pointer-events-none"></div>
+      <div className="bg-gradient-to-r from-amber-500 via-orange-600 to-[#7f1d1d] border border-amber-700 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-96 h-full bg-gradient-to-l from-yellow-300/20 to-transparent pointer-events-none"></div>
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <div className="flex items-center space-x-2 text-xs text-blue-400 font-bold mb-1">
-              <Sparkles className="w-4 h-4 text-blue-400" />
+            <div className="flex items-center space-x-2 text-xs text-amber-100 font-bold mb-1">
+              <Sparkles className="w-4 h-4 text-yellow-200" />
               <span>Vault Premier Private Wealth</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               Good morning, {mockCustomer.name}
             </h1>
-            <p className="text-xs text-slate-400 mt-1">
-              Customer ID: <code className="text-slate-200 font-mono">{mockCustomer.id}</code> • Preferred Branch: {mockCustomer.preferredBranch}
+            <p className="text-xs text-amber-100/90 mt-1">
+              Customer ID: <code className="text-white font-mono">{mockCustomer.id}</code> • Preferred Branch: {mockCustomer.preferredBranch}
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setShowTransferModal(true)}
-              className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-blue-900/40 flex items-center space-x-2 transition"
+              className="bg-emerald-500 hover:bg-emerald-400 text-emerald-950 px-4 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-emerald-900/30 flex items-center space-x-2 transition"
             >
               <Send className="w-4 h-4" />
               <span>Instant Transfer</span>
             </button>
             <Link
               href="/statements"
-              className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-2 transition"
+              className="bg-white/15 hover:bg-white/25 text-white border border-white/25 px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-2 transition"
             >
               <Download className="w-4 h-4" />
               <span>Download Advice</span>
@@ -333,7 +333,7 @@ export default function BankingDashboard() {
           <div className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl space-y-4">
             <div className="flex justify-between items-center pb-3 border-b border-slate-800">
               <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <Send className="w-4 h-4 text-blue-400" /> Instant Money Transfer
+                <Send className="w-4 h-4 text-emerald-400" /> Instant Money Transfer
               </h3>
               <button
                 onClick={() => setShowTransferModal(false)}
@@ -396,7 +396,7 @@ export default function BankingDashboard() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-xs shadow-lg shadow-blue-900/40 transition"
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-900/40 transition"
                 >
                   Authorize Payment with 2FA OTP
                 </button>
